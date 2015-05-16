@@ -83,15 +83,21 @@ function Game(circleCount, duration) {
     gameRunning = true;
     $('button').text("--  Pause  --");
     $('#score').text(this.score);
+    window.performance.mark('start_circle_generation')
     for (var i = 0; i < this.circleCount; i++) {
       this.circles.push(Circle.init());
     }
+    window.performance.mark('finish_circle_generation');
+    window.performance.measure('measure_circle_creation', 'start_circle_generation','finish_circle_generation');
+    var timeToGenerate = window.performance.getEntriesByName('measure_circle_creation');
+    console.log("Time to generate circles: " + timeToGenerate[0].duration + "ms");
     var counter = setInterval(timer, 100);
 
     function timer() {
       $('#timer').html(Number(timeLeft).toFixed(1));
-      if (timeLeft <= 0.1 ) {
+      if (timeLeft < 0.1) {
         window.game.stop();
+      $('#timer').html(Number(0).toFixed(1));
         clearInterval(counter);
       }
       if (gamePaused === false) {
