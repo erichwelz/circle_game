@@ -23,7 +23,7 @@ function gameStateManager() {
 }
 
 function Circle() {
-  this.speed = 750 + Math.random() * 1000; //lower is faster
+  this.speed = 600 + Math.random() * 1000; //lower is faster
   this.diameter = 50 + Math.round(Math.random() * 40);
   this.x = Math.round(Math.random() * (800 - this.diameter));
   this.y = Math.round(Math.random() * (600 - this.diameter));

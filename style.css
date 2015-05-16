@@ -41,8 +41,9 @@ body {
 }
 
 .time_score {
-  width: 400px;
+  width: 440px;
   margin: auto;
+  overflow: auto;
 }
 
 .score_box{
